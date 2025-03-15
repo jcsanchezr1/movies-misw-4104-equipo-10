@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div class="col">
+    <app-platform-create (platformCreated)="onPlatformCreated()"></app-platform-create>
+  </div>
+  <div class="col">
+    <h1 i18n class="header-platform">Plataformas</h1>
+    <table class="table platform-table">
+      <caption i18n>Listado de plataformas existentes</caption>
+      <thead>
+        <tr>
+          <th id="platformNumber" class="h4 header-cell">#</th>
+          <th i18n id="platformName" class="h4 header-cell">Nombre</th>
+          <th i18n id="platformUrl" class="h4 header-cell">Sitio web</th>
+          <th i18n id="platformMovies" class="h4 header-cell">Número de películas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let platform of platforms; let i = index" [class]="i % 2 === 0 ? 'even-row' : 'odd-row'">
+          <td class="td-cell">{{ i + 1 }}</td>
+          <td class="td-cell">{{ platform.name }}</td>
+          <td class="td-cell">{{ platform.url }}</td>
+          <td class="td-cell">{{ platform.movies.length }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

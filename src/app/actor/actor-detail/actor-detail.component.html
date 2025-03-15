@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-auto">
+      <div class="d-flex align-items-center return-div" (click)="onSelected()">
+        <em class="bi bi-arrow-left me-2"></em>
+        <p i18n class="detail-title mb-0">Volver</p>
+      </div>
+    </div>
+  </div>
+  <div class="row actor-container">
+    <div class="col-3">
+      <img class="actor-photo img-fluid" src="{{ actorDetail.photo }}" alt="{{ actorDetail.name }}" />
+    </div>
+    <div class="col-9">
+      <div class="actor-details">
+        <div class="actor-name">
+          <strong>{{ actorDetail.name }}</strong>
+        </div>
+        <div class="actor-biography">
+          {{ actorDetail.biography }}
+        </div>
+        <div class="actor-info">
+          <div class="info-item">
+            <strong i18n>Nacionalidad: </strong> {{ actorDetail.nationality }}
+          </div>
+          <div class="info-item">
+            <strong i18n>Fecha de nacimiento: </strong> {{ actorDetail.birthDate | date:'MMM dd, yyyy' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="margin-left: 24px; margin-right: 24px">
+      <h1 i18n class="h6" style="color: #FFFFFF">Películas</h1>
+      <hr class="w-100" style="border-color: #828282" />
+    </div>
+  </div>
+
+  <div class="carousel-container position-relative">
+    <div class="movie-actor-carousel">
+      <div class="movie-actor-card" *ngFor="let movie of actorDetail.movies">
+        <div class="movie-actor-card position-relative" routerLink="/movies/{{ movie.id }}">
+          <div class="position-relative">
+            <div class="image-container">
+              <img class="card-img-top img-fluid" [src]="movie.poster" [alt]="movie.title" />
+            </div>
+            <div class="overlay"></div>
+          </div>
+          <div class="card-body text-white position-absolute bottom-0 start-0 p-2">
+            <div class="d-flex flex-column p-3">
+              <p class="card-text card-text-color mb-0 ">
+                <em class="bi bi-calendar2-week-fill card-text-color"></em>
+                <span class="span-magin">{{ movie.releaseDate | date:'mediumDate':'es' }}</span>
+              </p>
+              <h2 class="card-actor-title mb-0">{{ movie.title }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="stars">
+          <span class="rating" [ngStyle]="{ '--rating': movie.popularity }">
+            <ng-container *ngFor="let _ of getStars(movie.popularity); let i = index">
+              <em class="bi bi-star-fill stars-color"></em>
+              <span *ngIf="i !== getStars(movie.popularity).length - 1">&nbsp;</span>
+            </ng-container>
+          </span>
+        </div>
+      </div>
+      <button aria-label="Película anterior" class="btn-prev btn btn-primary btn-scroll"
+        (click)="scrollCarousel($event, -1)">
+        <em class="bi-chevron-left bi"></em>
+      </button>
+      <button aria-label="Siguiente película" class="btn-next btn btn-primary btn-scroll"
+        (click)="scrollCarousel($event, 1)">
+        <em class="bi-chevron-right bi"></em>
+      </button>
+    </div>
+  </div>
+
+</div>

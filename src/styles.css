@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+  --bs-body-bg: #222831;
+  font-family: "Poppins", sans-serif;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  color: #6d7183;
+  margin-right: 50px;
+}
+
+.search-input {
+  background-color: #393e46;
+  padding: 14px 20px;
+  border: none;
+  color: #fff;
+  flex-grow: 1;
+  max-width: 360px;
+  border-radius: 12px;
+  margin-right: 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.toast-error {
+  background-color: rgb(255, 133, 250, 0.1) !important;
+  color: rgb(255, 133, 250) !important;
+}
+
+/* Estilos ngbDatepicker */
+.ngb-dp-day {
+  color: #fff !important;
+  background-color: #2c323b !important;
+}
+
+.ngb-dp-day.disabled .btn-light.text-muted.outside {
+  color: #828282 !important;
+}
+
+.ngb-dp-day .btn-light.text-muted.outside[ng-reflect-disabled="false"] {
+  color: #828282 !important;
+}
+
+.ngb-dp-header {
+  background-color: #2c323b !important;
+  color: #fff !important;
+}
+
+.ngb-dp-weekday {
+  background-color: #2c323b !important;
+  color: #fff !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ngb-dp-month:first-child .ngb-dp-week {
+  border: none !important;
+  padding-left: 0 !important;
+}
+
+.ngb-dp-month:last-child .ngb-dp-week {
+  border: none !important;
+  padding-right: 0 !important;
+}
+
+.ngb-dp-month .ngb-dp-week:last-child {
+  padding-bottom: 0 !important;
+}
+
+.ngb-dp-header select.form-select {
+  color: #fff !important;
+}
+
+.ngb-dp-day:hover,
+.ngb-dp-day.ngb-dp-today:hover {
+  color: black !important;
+}
+
+:root {
+  --navbar-height: 56px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#principal {
+  flex: 1;
+  margin-top: var(--navbar-height);
+  overflow-y: auto;
+  padding-top: 40px;
+}

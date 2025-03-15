@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h1 i18n class="text-white">Crear un género</h1>
+    </div>
+  </div>
+  <form [formGroup]="genreForm" (ngSubmit)="!genreForm.invalid && createGenre(genreForm.value)">
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="form-group" [class.has-error]="isControlInvalid('type')">
+          <label for="type">
+            <span i18n class="text-white">Nombre</span>
+            <span [style.color]="isControlInvalid('type') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input novalidate type="text" id="type" class="form-control" formControlName="type"
+            [style.borderColor]="isControlInvalid('type') ? '#FF85FA' : '#555555'" autocomplete="off" maxlength="15" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('type')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('type') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('type'); else validMessage">
+                <span i18n="@@infoMessageGenreType">Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessage>
+                <span i18n="@@errorMessageGenreType">Campo alfanumérico. Máximo 15 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <button i18n type="submit" class="btn btn-custom" [disabled]="!genreForm.valid">Guardar</button>
+  </form>
+  <div class="row">
+    <app-genre-list></app-genre-list>
+  </div>
+</div>

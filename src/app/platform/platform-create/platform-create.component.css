@@ -1,0 +1,73 @@
+h1 {
+  font-size: 24px;
+  color: #FFFFFF;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.btn,
+.form-group label,
+.form-group small,
+.form-group input {
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-group {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+label {
+  color: white;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 100;
+}
+
+input[type="text"] {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #555555;
+  padding: 0px 16px;
+  background-color: #2C323B;
+  color: white;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+input[type="text"]::placeholder {
+  color: #555555;
+}
+
+small {
+  display: block; 
+  margin-top: 8px;
+}
+
+.form-text {
+  color: white;
+  font-size: 13px;
+  font-weight: 100;
+}
+
+.btn-save-platform {
+  background-color: #004DBC;
+  color: white;
+  border-radius: 12px;
+  padding: 12px 24px;
+  margin-bottom: 40px;
+}
+
+.btn-save-platform:hover{
+  background-color: rgba(0, 77, 188, 0.5);
+  color: white;
+}
+
+.btn-save-platform:disabled {
+  background-color: rgba(0, 77, 188, 0.5);
+  color: #999999;
+  cursor: not-allowed;
+  border: none; 
+}

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="container-fluid actors-container">
+    <div class="row">
+      <div class="col">
+        <h1 i18n>Géneros</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 table-container">
+        <table class="table custom-table">
+          <caption i18n>Listado de genéros usados en la sitio de péliculas</caption>
+          <thead>
+            <tr>
+              <th id="genreNumber" class="h4 header-cell">#</th>
+              <th i18n id="genreName" class="h4 header-cell">Nombre</th>
+              <th i18n id="genreNumberMovies" class="h4 header-cell">Número de películas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of genres; let i = index" [class]="i % 2 === 0 ? 'even-row' : 'odd-row'">
+              <td class="td-cell">
+                <span><strong>{{i + 1}}</strong></span>
+              </td>
+              <td class="td-cell">
+                <span>{{c.type}}</span>
+              </td>
+              <td class="td-cell">
+                <span>{{c.movies.length}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

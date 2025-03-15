@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h1 class="tittle-heading; text-white">Películas</h1>
+    </div>
+    <div class="col search-bar-container">
+      <input type="text" class="search-input" [(ngModel)]="searchTerm" (keyup)="filterGenres()"
+        placeholder="Buscar película">
+      <em class="bi bi-search search-icon"></em>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="filteredGenres.length > 0; else noResults">
+    <div class="col-12" *ngFor="let genre of filteredGenres">
+      <div class="genre-wrapper with-line">
+        <h2 class="genre-title" style="color: #6D7183; font-size: 24px;">{{ genre.type }}</h2>
+        <div class="genre-info" style="background-color: rgba(105, 113, 232, 0.1)">
+          <span>{{ genre.movies.length }} películas</span>
+        </div>
+      </div>
+      <div class="carousel-container position-relative">
+        <div class="movie-carousel">
+          <div routerLink="/movies/{{ movie.id }}" class="movie-card" *ngFor="let movie of genre.movies" (click)="onSelected(movie.id)">
+            <div class="card position-relative" style="overflow: hidden; border-radius: 20px; border-color: #222831;">
+              <div class="position-relative">
+                <div class="image-container">
+                  <img [src]="movie.poster" [alt]="movie.title" class="card-img-top img-fluid" />
+                </div>
+                <div class="overlay"></div>
+              </div>
+              <div class="card-body text-white p-2 position-absolute bottom-0 start-0">
+                <div class="d-flex flex-column p-3">
+                  <p class="card-text mb-0" style="color: #828282;">
+                    <em class="bi bi-calendar2-week-fill" style="color: #828282;"></em>
+                    <span style="margin-left: 8px;">{{ movie.releaseDate | date:'mediumDate':'es' }}</span>
+                  </p>
+                  <h3 class="card-title mb-0" style="margin-top: 16px; word-wrap: break-word;">{{ movie.title }}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="stars">
+              <span class="rating" [ngStyle]="{ '--rating': movie.popularity }">
+                <ng-container *ngFor="let _ of getStars(movie.popularity); let i = index">
+                <em class="bi bi-star-fill" style="color: #FF6900;"></em>
+                <span *ngIf="i !== getStars(movie.popularity).length - 1">&nbsp;</span>
+              </ng-container>
+              </span>
+            </div>
+          </div>
+          <button aria-label="Película anterior" class="btn btn-primary btn-scroll btn-prev" (click)="scrollCarousel($event, -1)">
+            <em class="bi bi-chevron-left"></em>
+          </button>
+          <button aria-label="Siguiente película" class="btn btn-primary btn-scroll btn-next" (click)="scrollCarousel($event, 1)">
+            <em class="bi bi-chevron-right"></em>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noResults>
+    <div class="no-results">
+      <p>No se encontraron resultados para la búsqueda: "{{ searchTerm }}"</p>
+    </div>
+  </ng-template>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+.image-container {
+  width: auto;
+  max-width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+  
+.image-container img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 32px;
+  color: #FFFFFF;
+  margin-left: 8px;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 30%, transparent);
+}
+
+.card {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+  
+.rating {
+  color: #FF6900;
+}
+
+.rating .fa-star {
+  font-size: 20px;
+  margin: 0 2px;
+}
+
+.rating .fa-star::before {
+  content: "\f005";
+}
+
+.stars [class*="fa-star"]::before {
+  content: "\f005";
+}
+
+.carousel-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.movie-card .card-title {
+  white-space: normal;
+  font-size: 18px;
+}
+
+.btn-scroll {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(34, 40, 49, 0.5);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-prev {
+  left: 0;
+}
+
+h2 {
+  font-size: 28px;
+  color: #6D7183;
+}
+
+.btn-next {
+  right: 0;
+}
+
+.movie-carousel {
+  overflow-x: hidden;
+}
+
+.movie-card {
+  width: 15rem;
+  display: inline-block;
+  margin-right: 32px;
+  cursor: pointer;
+}
+
+.no-results {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.genre-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.genre-wrapper.with-line {
+  border-bottom: 2px solid #2C323B;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.genre-info {
+  background-color: rgba(105, 113, 232, 0.1);
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-left: 16px;
+  border: 1.5px solid #B6BBFF;
+}
+
+.genre-info span {
+  color: #B6BBFF;
+  font-weight: bold; 
+  font-size: 14px;
+}

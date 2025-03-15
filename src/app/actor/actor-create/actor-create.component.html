@@ -1,0 +1,123 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h1 i18n class="text-white">Crear un actor</h1>
+    </div>
+  </div>
+  <form [formGroup]="actorForm" (ngSubmit)="!actorForm.invalid && createActor(actorForm.value)">
+    <div class="row">
+      <div class="col-md-6">
+
+
+        <div class="form-group" [class.has-error]="isControlInvalid('name')">
+          <label for="name">
+            <span i18n class="text-white">Nombre</span>
+            <span [style.color]="isControlInvalid('name') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input novalidate type="text" id="name" class="form-control" formControlName="name"
+            [style.borderColor]="isControlInvalid('name') ? '#FF85FA' : '#555555'" autocomplete="off" maxlength="100" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('name')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('name') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('name'); else validMessage">
+                <span i18n="@@infoMessageActorName">Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessage>
+                <span i18n="@@errorMessageActorName">Campo alfanumérico. Máximo 100 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="nationality">
+            <span i18n class="text-white">Nacionalidad</span>
+            <span [style.color]="isControlInvalid('nationality') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input novalidate type="text" id="nationality" class="form-control" formControlName="nationality"
+            [style.borderColor]="isControlInvalid('nationality') ? '#FF85FA' : '#555555'" autocomplete="off"
+            maxlength="30" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('nationality')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('nationality') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('nationality'); else validMessage1">
+                <span i18n="@@infoMessageActorNacionality">Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessage1>
+                <span i18n="@@errorMessageActorNacionality">Campo alfanumérico. Máximo 30 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group" [class.has-error]="isControlInvalid('photo')">
+          <label for="photo">
+            <span i18n class="text-white">Foto</span>
+            <span [style.color]="isControlInvalid('photo') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input novalidate type="text" id="photo" class="form-control" formControlName="photo"
+            [style.borderColor]="isControlInvalid('photo') ? '#FF85FA' : '#555555'" autocomplete="off" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('photo')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('photo') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('photo'); else validMessage2">
+                <span i18n="@@infoMessageActorPhoto">Este campo es obligatorio.Ingrese una url válida</span>
+              </ng-container>
+              <ng-template #validMessage2>
+                <span i18n="@@errorMessageActorPhoto">Campo alfanumérico. Url de la foto del actor.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+        <div class="form-group" [class.has-error]="isControlInvalid('birthDate')">
+          <label for="birthDate">
+            <span i18n class="text-white">Fecha de nacimiento</span>
+            <span [style.color]="isControlInvalid('birthDate') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input i18n-placeholder type="text" class="form-control" id="birthDate" placeholder="Selecciona una fecha"
+            formControlName="birthDate" autocomplete="off" ngbDatepicker #dp="ngbDatepicker" (click)="dp.toggle()"
+            [minDate]="minDate" [maxDate]="maxDate" readonly
+            [style.borderColor]="isControlInvalid('birthDate') ? '#FF85FA' : '#555555'">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <div class="form-group" [class.has-error]="isControlInvalid('biography')">
+          <label for="biography">
+            <span i18n class="text-white">Biografia</span>
+            <span [style.color]="isControlInvalid('biography') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <textarea novalidate type="text" id="biography" class="form-textarea form-control "
+            formControlName="biography" [style.borderColor]="isControlInvalid('biography') ? '#FF85FA' : '#555555'"
+            autocomplete="off" maxlength="500"></textarea>
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('biography')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('biography') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('biography'); else validMessage3">
+                <span i18n="@@infoMessageActorBiography">Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessage3>
+                <span i18n="@@errorMessageActorBiography">Campo alfanumérico. Máximo 500
+                  caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+    </div>
+    <button i18n type="submit" class="btn btn-custom" [disabled]="!actorForm.valid">Guardar</button>
+  </form>
+</div>

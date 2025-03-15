@@ -1,0 +1,31 @@
+<div class="d-md-flex" id="admin-container">
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+        <div class="position-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a i18n class="nav-link" routerLinkActive="active" [routerLink]="['/admin/genres']">Géneros</a>
+                </li>
+                <li class="nav-item">
+                    <a i18n class="nav-link" routerLinkActive="active"
+                        [routerLink]="['/admin/platforms']">Plataformas</a>
+                </li>
+                <li class="nav-item">
+                    <a i18n class="nav-link" routerLinkActive="active" [routerLink]="['/admin/create-movie']">Crear
+                        película</a>
+                </li>
+                <li class="nav-item">
+                    <a i18n class="nav-link" routerLinkActive="active" [routerLink]="['/admin/create-actor']">Crear
+                        actor</a>
+                </li>
+                <li class="nav-item">
+                    <a i18n class="nav-link" routerLinkActive="active" [routerLink]="['/admin/create-director']">Crear
+                        director</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <router-outlet></router-outlet>
+    </div>
+</div>

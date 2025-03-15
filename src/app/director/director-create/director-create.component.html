@@ -1,0 +1,140 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h1 i18n class="text-white">Crear un director</h1>
+    </div>
+  </div>
+  <form [formGroup]="directorForm" (ngSubmit)="!directorForm.invalid && createDirector(directorForm.value)">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group" [class.has-error]="isControlInvalid('directorName')">
+          <label for="directorName">
+            <span i18n class="text-white">Nombre</span>
+            <span [style.color]="isControlInvalid('directorName') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input maxlength="100" type="text" id="directorName" class="form-control" formControlName="directorName"
+            [style.borderColor]="isControlInvalid('directorName') ? '#FF85FA' : '#555555'" autocomplete="off" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('directorName')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('directorName') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('directorName'); else validMessageDirectorName">
+                <span i18n="@@infoMessageDirector"> Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessageDirectorName>
+                <span i18n="@@errorMessageDirectorName">Campo alfanumérico. Máximo 100 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('directorNationality')">
+          <label for="directorNationality">
+            <span i18n class="text-white">Nacionalidad</span>
+            <span [style.color]="isControlInvalid('directorNationality') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input maxlength="30" type="text" id="directorNationality" class="form-control" formControlName="directorNationality"
+            [style.borderColor]="isControlInvalid('directorNationality') ? '#FF85FA' : '#555555'" autocomplete="off" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('directorNationality')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('directorNationality') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('directorNationality'); else validMessageDirectorNationality">
+                <span i18n="@@infoMessageDirector"> Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessageDirectorNationality>
+                <span i18n="@@errorMessageDirectorNationality">Campo alfanumérico. Máximo 30 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" [class.has-error]="isControlInvalid('directorPhoto')">
+          <label for="directorPhoto">
+            <span i18n class="text-white">Foto</span>
+            <span [style.color]="isControlInvalid('directorPhoto') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input type="text" id="directorPhoto" class="form-control" formControlName="directorPhoto"
+            [style.borderColor]="isControlInvalid('directorPhoto') ? '#FF85FA' : '#555555'"
+            autocomplete="off" />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('directorPhoto')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('directorPhoto') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('directorPhoto'); else validMessageDirectorPhoto">
+                <span i18n="@@infoMessageDirectorUrl"> Este campo es obligatorio. Ingrese una url válida</span>
+              </ng-container>
+              <ng-template #validMessageDirectorPhoto>
+                <span i18n="@@errorMessageDirectorUrl">Campo alfanumérico. Url de la foto del director.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('directorBirthDate')">
+          <label for="directorBirthDate">
+            <span i18n class="text-white">Fecha de nacimiento</span>
+            <span [style.color]="isControlInvalid('directorBirthDate') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <input i18n-placeholder type="text" id="directorBirthDate" class="form-control input-birth-date" formControlName="directorBirthDate"
+            [style.borderColor]="isControlInvalid('directorBirthDate') ? '#FF85FA' : '#555555'"
+            ngbDatepicker #dp="ngbDatepicker" (click)="dp.toggle()" placeholder="Seleccione una fecha de nacimiento"
+            autocomplete="off" [minDate]="minDate" [maxDate]="maxDate" readonly />
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('directorBirthDate')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('directorBirthDate') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('directorBirthDate'); else validMessageDirectorBirthDate">
+                <span i18n="@@infoMessageDirector"> Este campo es obligatorio. Seleccione una fecha</span>
+              </ng-container>
+              <ng-template #validMessageDirectorBirthDate>
+                <span i18n="@@errorMessageDirectorBirthDate">Fecha en formato ISO 8601 (YYYY-MM-DD).</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group" [class.has-error]="isControlInvalid('directorBiography')">
+          <label for="directorBiography">
+            <span i18n class="text-white">Biografia</span>
+            <span [style.color]="isControlInvalid('directorBiography') ? '#FF85FA' : '#B6BBFF'"> *</span>
+          </label>
+          <textarea maxlength="500" novalidate id="directorBiography" class="form-control form-textarea-director" formControlName="directorBiography"
+            [style.borderColor]="isControlInvalid('directorBiography') ? '#FF85FA' : '#555555'"
+            autocomplete="off"></textarea>
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('directorBiography')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('directorBiography') ? '#FF85FA' : 'white'">
+              <ng-container *ngIf="isControlInvalid('directorBiography'); else validMessageDirectorBiography">
+                <span i18n="@@infoMessageDirector"> Este campo es obligatorio.</span>
+              </ng-container>
+              <ng-template #validMessageDirectorBiography>
+                <span i18n="@@errorMessageDirectorBiografy">Campo alfanumérico. Máximo 500 caracteres.</span>
+              </ng-template>
+            </span>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button i18n type="submit" class="btn btn-save-director" [disabled]="!directorForm.valid">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

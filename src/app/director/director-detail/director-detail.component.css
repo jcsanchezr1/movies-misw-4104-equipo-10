@@ -1,0 +1,142 @@
+.carousel-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+.movie-carousel {
+  overflow-x: hidden;
+}
+
+.movie-card {
+  width: 15rem;
+  display: inline-block;
+  margin-right: 32px;
+}
+
+.card-movie {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card .card-title {
+  white-space: normal;
+  font-size: 18px;
+}
+
+.image-container {
+  width: auto;
+  max-width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.btn-scroll {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(34, 40, 49, 0.5);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-next {
+  right: 0;
+}
+
+.btn-prev {
+  left: 0;
+}
+
+.director-container {
+  margin-top: 24px;
+  margin-bottom: 40px;
+  margin-left: 12px;
+}
+
+.director-details {
+  margin-bottom: 50px;
+}
+
+.director-name {
+  margin-bottom: 50px;
+  font-size: 24px;
+}
+
+.director-biography {
+  margin-bottom: 50px;
+}
+
+.director-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.info-item {
+  margin-bottom: 50px;
+  &:last-child {
+    margin-bottom: 50px;
+  }
+}
+
+.director-details * {
+  color: #ffffff;
+}
+
+.director-photo {
+  width: 23rem;
+  height: 30rem;
+}
+
+.col-3 img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 25px;
+}
+
+.detail-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+}
+
+.bi-arrow-left {
+  color: white;
+}
+
+.return-div:hover {
+  cursor: pointer;
+}
+
+.return-div {
+  margin-top: 24px;
+  margin-right: 24px;
+  margin-left: 24px;
+}

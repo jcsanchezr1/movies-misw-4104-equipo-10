@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-auto">
+      <div class="d-flex align-items-center return-div" (click)="onClick()">
+        <em class="bi bi-arrow-left me-2"></em>
+        <p class="detail-title mb-0">Volver</p>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-start">
+    <div class="col-md-auto">
+      <div class="thumb">
+        <img class="img-fluid" src="{{ movieDetail.poster }}" alt="{{ movieDetail.title }}" />
+        <div class="mask"></div>
+        <a href="{{ movieDetail.youtubeTrailer.url }}" target="_blank" class="overlay-link">
+          <div class="overlay-image">
+            <img src="assets/images/ver-trailer.png" alt="Ver trailer" />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="movie-details" style="margin-left: 48px;">
+        <div class="movie-name">
+          <strong>{{ movieDetail.title }}</strong>
+        </div>
+        <div class="genre-info" style="background-color: rgba(105, 113, 232, 0.1)">
+          <span>{{ movieDetail.genre.type }}</span>
+        </div>
+        <div class="movie-info">
+          <div class="info-item">
+            <strong>Duración: </strong> {{ movieDetail.duration }} minutos
+          </div>
+          <div class="info-item">
+            <strong>Dirigido por: </strong> {{ movieDetail.director.name }}
+          </div>
+          <div class="info-item">
+            <strong>País: </strong> {{ movieDetail.country }}
+          </div>
+          <div class="info-item">
+            <strong>Fecha de lanzamiento: </strong> {{ movieDetail.releaseDate | date:'MMM dd, yyyy' }}
+          </div>
+          <div class="stars">
+            <span class="rating" [ngStyle]="{ '--rating': movieDetail.popularity }">
+              <ng-container *ngFor="let _ of getStars(movieDetail.popularity); let i = index">
+              <em class="bi bi-star-fill" style="color: #FF6900;"></em>
+              <span *ngIf="i !== getStars(movieDetail.popularity).length - 1">&nbsp;</span>
+            </ng-container>
+            </span>
+          </div>
+          <div class="info-item">
+            <div *ngIf="movieDetail.platforms.length > 0">
+              <strong>Disponible en: </strong>
+              <div class="platforms-list">
+                <img
+                  *ngFor="let platform of movieDetail.platforms"
+                  [src]="platform.url"
+                  alt="Plataforma"
+                  class="platform-logo"
+                  (error)="handleImageError($event)"
+                  [title]="platform.name"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col with-line">
+      <h1 class="subtitle mb-3">Elenco</h1>
+    </div>
+    <div class="row">
+      <div class="actors-list col-md-3" *ngIf="movieDetail.actors.length > 0; else noActors">
+          <p class="actor-name" *ngFor="let actor of movieDetail.actors" routerLink="/actors/{{ actor.id }}">{{ actor.name }}</p>
+      </div>
+      <ng-template #noActors>
+          <div class="col-md-12">
+              <p class="empty-list">No hay actores asociados a esta película.</p>
+          </div>
+      </ng-template>
+  </div>
+    <div class="col with-line">
+      <h1 class="subtitle mb-3">Reseñas</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button
+          class="btn btn-custom"
+          (click)="showReviewComponent()"
+        >Crear reseña</button>
+      </div>
+    </div>
+    <div *ngIf="selected">
+      <app-review-create 
+        [movieId]="movieDetail.id"
+        (cancelClicked)="hideReviewComponent()"
+      ></app-review-create>
+    </div>
+    <div *ngIf="movieDetail.reviews.length > 0; else noReviews">
+      <div class="review mb-4" *ngFor="let review of movieDetail.reviews">
+        <div class="d-flex align-items-center">
+          <h2 class="review-title">{{ review.creator }}</h2>
+          <ng-container *ngFor="let _ of getStars(review.score); let i = index">
+            <em class="bi bi-star-fill" style="color: #FF6900;"></em>
+            <span *ngIf="i !== getStars(review.score).length - 1">&nbsp;</span>
+          </ng-container>
+        </div>
+        <div class="review-text mt-3">
+          <p *ngIf="!showAll && review.text.length > 1000">{{ review.text | slice:0:1000 }}...
+            <button *ngIf="review.text.length > 1000" class="toggle-button" (click)="toggleShowAll()">Ver más</button>
+          </p>
+          <p *ngIf="showAll || review.text.length <= 1000">{{ review.text }}
+            <button *ngIf="review.text.length > 1000" class="toggle-button" (click)="toggleShowAll()">Ver menos</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noReviews>
+      <div class="col-md-12">
+        <p class="empty-list">No se han escrito reseñas para esta película.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

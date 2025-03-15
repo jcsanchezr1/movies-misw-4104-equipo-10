@@ -1,0 +1,187 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h1 class="tittle-heading text-white">Crear una película</h1>
+    </div>
+  </div>
+  <form [formGroup]="movieForm" (ngSubmit)="!movieForm.invalid && onSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <div class="form-group" [class.has-error]="isControlInvalid('title')">
+          <label for="titulo">Título <span class="required">*</span></label>
+          <input
+            novalidate
+            type="text" 
+            class="form-control"
+            id="titulo" 
+            formControlName="title"
+            autocomplete="off"
+            maxlength="50"
+            [style.borderColor]="isControlInvalid('title') ? '#FF85FA' : '#555555'"
+          >
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('title')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('title') ? '#FF85FA' : 'white'">
+                {{ isControlInvalid('title') ? ' Este campo es obligatorio.' : 'Campo alfanumérico. Máximo 50 caracteres' }}
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('duration')">
+          <label for="duracion">Duración <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="duracion"
+            formControlName="duration"
+            autocomplete="off"
+            (keypress)="validateNumber($event)"
+            [style.borderColor]="isControlInvalid('duration') ? '#FF85FA' : '#555555'"
+          >
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('duration')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('duration') ? '#FF85FA' : 'white'">
+                {{ isControlInvalid('duration') ? ' Este campo es obligatorio. Ingrese un número entero positivo.' : 'Campo numérico. Número entero positivo en minutos' }}
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('releaseDate')">
+          <label for="fecha_lanzamiento">Fecha de lanzamiento <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="fecha_lanzamiento"
+            placeholder="Selecciona una fecha"
+            formControlName="releaseDate"
+            autocomplete="off" 
+            ngbDatepicker #dp="ngbDatepicker"
+            (click)="dp.toggle()"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            readonly
+            [style.borderColor]="isControlInvalid('releaseDate') ? '#FF85FA' : '#555555'"
+          > 
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('genre')">
+          <label for="genero">Género <span class="required">*</span></label>
+          <select
+            class="custom-select"
+            id="genero"
+            formControlName="genre"
+            [style.borderColor]="isControlInvalid('genre') ? '#FF85FA' : '#555555'"
+            >
+            <option value="" disabled selected hidden>Seleccione un género</option>
+            <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.type }}</option>
+          </select>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('trailer')">
+          <label for="trailer">Tráiler <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="trailer"
+            formControlName="trailer"
+            autocomplete="off"
+            [style.borderColor]="isControlInvalid('trailer') ? '#FF85FA' : '#555555'"
+          >
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('trailer')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('trailer') ? '#FF85FA' : 'white'">
+                {{ isControlInvalid('trailer') ? ' Este campo es obligatorio. Ingrese una url válida.' : 'Campo alfanumérico. Url del tráiler en YouTube' }}
+            </span>
+          </small>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group" [class.has-error]="isControlInvalid('poster')">
+          <label for="poster">Póster <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control" 
+            id="poster"
+            formControlName="poster"
+            autocomplete="off"
+            [style.borderColor]="isControlInvalid('poster') ? '#FF85FA' : '#555555'"
+          >
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('poster')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('poster') ? '#FF85FA' : 'white'">
+                {{ isControlInvalid('poster') ? ' Este campo es obligatorio. Ingrese una url válida.' : 'Campo alfanumérico. Url del póster de la película' }}
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('country')">
+          <label for="pais">País de origen <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="pais"
+            formControlName="country"
+            autocomplete="off"
+            maxlength="30"
+            [style.borderColor]="isControlInvalid('country') ? '#FF85FA' : '#555555'"
+          >
+          <small class="form-text">
+            <span *ngIf="isControlInvalid('country')">
+                <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <span [style.color]="isControlInvalid('country') ? '#FF85FA' : 'white'">
+                {{ isControlInvalid('country') ? ' Este campo es obligatorio.' : 'Campo alfanumérico. Máximo 30 caracteres' }}
+            </span>
+          </small>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('popularity')">
+          <label for="popularidad">Popularidad <span class="required">*</span></label>
+          <select
+            class="custom-select" 
+            id="popularidad"
+            formControlName="popularity"
+            [style.borderColor]="isControlInvalid('popularity') ? '#FF85FA' : '#555555'"
+            >
+            <option value="" disabled selected hidden>Seleccione una opción</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="form-group" [class.has-error]="isControlInvalid('director')">
+          <label for="director">Director <span class="required">*</span></label>
+          <select
+            class="custom-select"
+            id="director"
+            formControlName="director"
+            [style.borderColor]="isControlInvalid('director') ? '#FF85FA' : '#555555'"
+            >
+            <option value="" disabled selected hidden>Seleccione un director</option>
+            <option *ngFor="let director of directors" [value]="director.id">{{ director.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-custom"
+      [disabled]="!movieForm.valid"
+    >Guardar</button>
+  </form>
+</div>

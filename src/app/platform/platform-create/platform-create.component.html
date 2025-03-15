@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col">
+    <h1 i18n class="tittle-heading-platform text-white">Crear una plataforma</h1>
+  </div>
+</div>
+<form [formGroup]="platformForm" (ngSubmit)="!platformForm.invalid && createPlatform(platformForm.value)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group" [class.has-error]="isControlInvalid('namePlatform')">
+        <label for="namePlatform">
+          <span i18n class="text-white">Nombre</span>
+          <span [style.color]="isControlInvalid('namePlatform') ? '#FF85FA' : '#B6BBFF'"> *</span>
+        </label>
+        <input type="text" novalidate id="namePlatform" class="form-control" formControlName="namePlatform"
+          [style.borderColor]="isControlInvalid('namePlatform') ? '#FF85FA' : '#555555'" autocomplete="off" />
+        <small class="form-text">
+          <span *ngIf="isControlInvalid('namePlatform')">
+            <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+          </span>
+          <span [style.color]="isControlInvalid('namePlatform') ? '#FF85FA' : 'white'">
+            <ng-container *ngIf="isControlInvalid('namePlatform'); else validMessageNamePlatform">
+              <span i18n="@@infoMessageNamePlatform"> Este campo es obligatorio.</span>
+            </ng-container>
+            <ng-template #validMessageNamePlatform>
+              <span i18n="@@errorMessageNamePlatform">Campo alfanumérico. Máximo 50 caracteres.</span>
+            </ng-template>
+          </span>
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group" [class.has-error]="isControlInvalid('webSiteUrl')">
+        <label for="webSiteUrl">
+          <span i18n class="text-white">Sitio web</span>
+          <span [style.color]="isControlInvalid('webSiteUrl') ? '#FF85FA' : '#B6BBFF'"> *</span>
+        </label>
+        <input type="text" novalidate id="webSiteUrl" class="form-control" formControlName="webSiteUrl"
+          [style.borderColor]="isControlInvalid('webSiteUrl') ? '#FF85FA' : '#555555'"
+          autocomplete="off" />
+        <small class="form-text">
+          <span [style.color]="isControlInvalid('webSiteUrl') ? '#FF85FA' : 'white'">
+            <span *ngIf="isControlInvalid('webSiteUrl')">
+              <em class="bi bi-exclamation-circle-fill" style="color: #FF85FA;"></em>
+            </span>
+            <ng-container *ngIf="isControlInvalid('webSiteUrl'); else validMessageWebSiteUrl">
+              <span i18n="@@infoMessageWebSiteUrl"> Este campo es obligatorio. Ingrese una url válida.</span>
+            </ng-container>
+            <ng-template #validMessageWebSiteUrl>
+              <span i18n="@@errorMessageWebSiteUrl">Campo alfanumérico. Url del sitio web de la plataforma</span>
+            </ng-template>
+          </span>
+        </small>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button i18n type="submit" class="btn btn-save-platform" [disabled]="!platformForm.valid">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>

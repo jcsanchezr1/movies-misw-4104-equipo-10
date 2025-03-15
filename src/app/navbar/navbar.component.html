@@ -1,0 +1,27 @@
+<nav id="navBarId" aria-label="navBarIdLabel" class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/logo-app.png" alt="Logo del sitio" width="240">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <form class="form-inline">
+        <button i18n class="btn"
+          [ngClass]="currentRoute === 'movies' || currentRoute === '/' ? 'active-button' : 'inactive-button'"
+          [routerLink]="['/movies/list']">Películas</button>
+        <button i18n class="btn"
+          [ngClass]="currentRoute === 'actors' ? 'active-button' : 'inactive-button'"
+          [routerLink]="['/actors/list']">Actores</button>
+        <button i18n class="btn"
+          [ngClass]="currentRoute === 'directors' ? 'active-button' : 'inactive-button'"
+          [routerLink]="['/directors/list']">Directores</button>
+        <button i18n class="btn"
+          [ngClass]="currentRoute === 'admin' ? 'active-button' : 'inactive-button'"
+          [routerLink]="['/admin']">Administración</button>
+      </form>
+    </div>
+  </div>
+</nav>

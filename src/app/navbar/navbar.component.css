@@ -1,0 +1,25 @@
+.form-inline .btn {
+    border-radius: 12px;
+    padding: 10px 24px;
+    margin-right: 16px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.active-button {
+    background-color: white;
+    color: #222831;
+}
+
+.inactive-button {
+    background-color: #555555;
+    color: white;
+}
+
+.custom-navbar {
+    background-color: #222831;
+}
+
+.custom-navbar .navbar-toggler {
+    background-color: white;
+}

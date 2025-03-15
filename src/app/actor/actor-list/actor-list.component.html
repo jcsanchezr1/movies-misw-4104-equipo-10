@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="container-fluid actors-container">
+    <div class="row">
+      <div class="col">
+        <h1 i18n class="tittle-heading">Actores</h1>
+      </div>
+      <div class="col search-bar-container">
+        <input i18n-placeholder type="text" class="search-input" [(ngModel)]="searchTerm" (keyup)="filterActors()"
+          placeholder="Buscar actor">
+        <em class="bi bi-search search-icon"></em>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <ng-container *ngIf="filteredActors.length > 0; else noResults">
+      <div routerLink="/actors/{{ actor.id }}" class="col mb-2" *ngFor="let actor of filteredActors">
+        <div class="card p-0" style="width: 15rem; height: 25rem">
+          <img class="card-img-top" src="{{ actor.photo }}" alt="{{ actor.name }}" (click)="onSelected(actor)" />
+          <div class="card-body">
+            <h2 class="card-title">{{ actor.name }}</h2>
+            <div class="d-flex align-items-center">
+              <em class="bi bi-cake-fill me-2"></em>
+              <p class="card-text">{{ actor.birthDate | date:'MMM dd, yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noResults>
+      <div class="no-results">
+        <p i18n>No se encontraron resultados para la busqueda "{{ searchTerm }}"</p>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
